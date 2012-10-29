@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   	@user = login(params[:user][:email], params[:user][:password])
 
   	if @user
-  		redirect_back_or_to root_path
+  		redirect_back_or_to user_path(@user._id)
   	else
   		# FIXME doesn't work
   		flash.now[:alert] = "Login failed"

@@ -1,5 +1,6 @@
 ManageApp::Application.routes.draw do
 
+  resources :users, :only => [:show]
   resources :sessions, :only => [:new, :create, :destroy]
 
   root :to => 'home#index'
