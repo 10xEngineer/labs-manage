@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 
 gem "mongoid", "~> 3.0.10"
 gem "twitter-bootstrap-rails"
+gem "sorcery"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
