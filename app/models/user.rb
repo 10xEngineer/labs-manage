@@ -17,4 +17,6 @@ class User
 
 	field :service, type: Boolean, default: false
 	field :disabled, type: Boolean, default: false
+
+	has_many :access_tokens, :foreign_key => :user
 end

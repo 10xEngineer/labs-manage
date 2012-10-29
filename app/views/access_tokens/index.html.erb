@@ -1,0 +1,22 @@
+<h1>API Access Tokens</h1>
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Alias</th>
+			<th>Auth Token</th>
+		</tr>
+	</thead>	
+	<tbody>
+		<% @tokens.each do |token| %>
+		<tr>
+			<td><%= token.alias %></td>
+			<td><%= token.auth_token %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<ul>
+</ul>
+

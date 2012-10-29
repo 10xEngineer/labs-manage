@@ -1,6 +1,8 @@
 ManageApp::Application.routes.draw do
 
-  resources :users, :only => [:show]
+  resources :users, :only => [:show] do
+    resources :access_tokens, :path => "tokens"
+  end
   resources :sessions, :only => [:new, :create, :destroy]
 
   root :to => 'home#index'

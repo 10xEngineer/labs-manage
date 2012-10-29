@@ -42,7 +42,7 @@
               <ul class="nav nav-list">
                 <li class="nav-header">Sidebar</li>
                 <li><%= link_to "Account Overview", user_path(current_user)  %></li>
-                <li><%= link_to "API Keys", "/path2"  %></li>
+                <li><%= link_to "API Tokens", user_access_tokens_path(current_user)  %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
