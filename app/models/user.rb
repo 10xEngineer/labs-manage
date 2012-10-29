@@ -1,8 +1,11 @@
 class User
-	authenticates_with_sorcery!
-	
 	include Mongoid::Document
 	include Mongoid::Timestamps
+
+	include Sorcery::Model
+  	include Sorcery::Model::Adapters::Mongoid
+
+  	authenticates_with_sorcery!
 
 	field :email, type: String
 	field :name, type: String

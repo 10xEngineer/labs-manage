@@ -5,6 +5,17 @@ class SessionsController < ApplicationController
 
   def create
 
+  	@user = login(params[:user][:email], params[:user][:password])
+
+  	if @user
+  		redirect_back_or_to root_path
+  	else
+  		# FIXME doesn't work
+  		flash.now[:alert] = "Login failed"
+
+  		@user = User.new
+  		render :action => "new"
+  	end
   end
 
   def destroy
