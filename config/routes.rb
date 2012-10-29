@@ -1,4 +1,7 @@
 ManageApp::Application.routes.draw do
+
+  resources :sessions, :only => [:new, :create, :destroy]
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:
