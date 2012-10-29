@@ -13,7 +13,7 @@ class User
 	field :cpwd, type: String
 	field :salt, type: String
 
-	# TODO def_account
+	belongs_to :account, :foreign_key => :def_account
 
 	field :service, type: Boolean, default: false
 	field :disabled, type: Boolean, default: false
