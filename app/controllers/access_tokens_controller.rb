@@ -1,5 +1,5 @@
-class AccessTokensController < ApplicationController
-  def index
-  	@tokens = current_user.access_tokens
-  end
+class AccessTokensController < ProtectedController
+	def index
+		@tokens = current_user.access_tokens
+	end
 end

@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class UsersController < ProtectedController
+
 	def new
 		@user = User.new
 	end
