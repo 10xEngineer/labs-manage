@@ -1,0 +1,10 @@
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+	<legend>User Details</legend>
+	<%= f.input :name %>
+	<%= f.input :email %>
+	<%= f.input :password %>
+	<%= f.input :password_confirm %>
+	<div class="form-actions">
+		<%= f.submit 'Login', :class => "btn btn-primary" %>
+	</div>
+<% end %>

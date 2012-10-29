@@ -1,19 +1,24 @@
 <h1>Overview</h1>
 
 <section>
-	<dl class='left'>
+	<dl class='left span4'>
 		<dt>Account type</dt>
 		<dd>BETA/Pay As You Go</dd>
 	</dl>
-	<dl class='left'>
-		<dt>Name</dt>
-		<dd><%= @user.name %></dd>
-	</dl>
-	<dl class='left'>
+	<dl class='right span4'>
 		<dt>Account ID</dt>
 		<dd><%= @user.account.account_ref %></dd>
 	</dl>
-	<dl class='left'>
+	<dl class='left span4'>
+		<dt>Name</dt>
+		<dd><%= @user.name %></dd>
+	</dl>
+	<dl class='left span4'>
+		<dt>Email</dt>
+		<dd><%= @user.email %></dd>
+	</dl>
+
+	<dl class='left span4'>
 		<dt>Created</dt>
 		<dd><%= @user.account.created_at %></dd>
 	</dl>
