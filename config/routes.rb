@@ -1,7 +1,11 @@
 ManageApp::Application.routes.draw do
 
   resources :users, :only => [:new, :create, :show] do
-    resources :access_tokens, :path => "tokens"
+    resources :access_tokens, :path => "tokens" do
+      collection do 
+        get :generate
+      end
+    end
   end
   resources :sessions, :only => [:new, :create, :destroy]
 

@@ -49,7 +49,9 @@
             </div><!--/.well -->
           </div><!--/span-->
           <div class="span9">
+            <% if @current_user %>
             <%= @current_user.email %>
+            <% end %>
             <br/>
 
              <%= yield %>
