@@ -5,7 +5,7 @@ class Account
 	include Mongoid::Timestamps
 
 	field :handle, type: String
-	field :account_ref, type: String, default: Account.gen_reference
+	field :account_ref, type: String
 
 	# TODO owners
 

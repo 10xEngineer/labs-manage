@@ -43,7 +43,7 @@
                 <li class="nav-header">Sidebar</li>
                 <li><%= link_to "Account Overview", user_path(current_user)  %></li>
                 <li><%= link_to "API Tokens", user_access_tokens_path(current_user)  %></li>
-                <li><%= link_to "SSH Keys", "#"  %></li>
+                <li><%= link_to "SSH Keys", user_keys_path(current_user)  %></li>
                 <li class="nav-header">Resources</li>
                 <li><%= link_to "Lab Machines", "#"  %></li>
               </ul>

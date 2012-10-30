@@ -15,7 +15,8 @@ class User
 
 	belongs_to :account, :foreign_key => :def_account
 
-	has_many :access_tokens, :foreign_key => :user
+	has_many :access_tokens
+	has_many :keys
 
 	field :service, type: Boolean, default: false
 	field :disabled, type: Boolean, default: false
