@@ -6,6 +6,7 @@
 			<th>Name</th>
 			<th>Fingerprint</th>
 			<th>Created</th>
+			<th>&nbsp;</th>
 		</tr>
 	</thead>	
 	<tbody>
@@ -14,7 +15,17 @@
 			<td><%= key.name %></td>
 			<td><%= key.fingerprint %></td>
 			<td><%= key.created_at %></td>
+			<td><%= link_to 'Delete', user_key_path(@current_user, key.name), :method => :delete, :confirm => 'Are you sure?' %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
+
+<%= simple_form_for @key, :url => user_keys_path(@current_user), :html => { :class => 'form-horizontal' } do |f| %>
+	<legend>New key</legend>
+	<%= f.input :name %>
+	<%= f.input :public_key, :as => :text %>
+	<div class="form-actions">
+		<%= f.submit 'Add key', :class => "btn btn-primary" %>
+	</div>
+<% end %>

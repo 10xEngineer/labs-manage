@@ -6,9 +6,9 @@ ManageApp::Application.routes.draw do
       end
     end
 
-    resources :keys, :only => [:index] do
-    end
+    resources :keys, :only => [:index, :create, :destroy]
   end
+  
   resources :sessions, :only => [:new, :create, :destroy]
 
   root :to => 'home#index'

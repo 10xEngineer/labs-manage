@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-
   	@user = login(params[:user][:email], params[:user][:password])
 
   	if @user
