@@ -21,7 +21,7 @@ class UsersController < ProtectedController
 			@user.account = @account
 			@user.save
 
-			redirect_to root_path, :notice => "Signed up!"
+			redirect_to login_path, :notice => "Thank you for signing up for Labs! Check your email to finish the registration."
 		else
 			render :new, :layout => 'sessions'
 		end
