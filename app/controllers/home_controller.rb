@@ -1,5 +1,4 @@
-class HomeController < ApplicationController
-  def index
-  	@user = User.first
-  end
+class HomeController < ProtectedController
+	def index
+	end
 end

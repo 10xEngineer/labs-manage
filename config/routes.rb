@@ -8,8 +8,12 @@ ManageApp::Application.routes.draw do
 
     resources :keys, :only => [:index, :create, :destroy]
   end
-  
-  resources :sessions, :only => [:new, :create, :destroy]
+
+  get "login"   => "sessions#new",      :as => :login
+  get "logout"  => "sessions#destroy",  :as => :logout
+  get "signup"  => "users#new",         :as => :signup
+
+  resources :sessions
 
   root :to => 'home#index'
 

@@ -9,4 +9,10 @@ class ProtectedController < ApplicationController
 			render :status => 401, :file => "public/401.html"
 		end
 	end
+
+private
+
+	def not_authenticated
+		redirect_to login_url
+	end
 end
