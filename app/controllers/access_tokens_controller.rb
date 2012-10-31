@@ -4,6 +4,7 @@ class AccessTokensController < ProtectedController
 	end
 
 	def generate
+		# TODO move to model as helper function
 		tokens = AccessToken.where(user: @current_user._id)
 		old_token = tokens.first
 
@@ -15,7 +16,7 @@ class AccessTokensController < ProtectedController
 			)
 
 		if token.save
-			old_token.destroy
+			old_token.destroy if old_token
 		end
 
 		redirect_to user_access_tokens_path(@current_user)

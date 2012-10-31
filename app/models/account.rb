@@ -7,7 +7,9 @@ class Account
 	field :handle, type: String
 	field :account_ref, type: String
 
-	# TODO owners
+	field :owners, type: Array
+
+	# TODO organization detail
 
 	field :disabled, type: Boolean, default: false
 	field :organization, type: Boolean, default: false

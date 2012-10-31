@@ -5,6 +5,8 @@ class User
 	include Sorcery::Model
   	include Sorcery::Model::Adapters::Mongoid
 
+  	attr_accessor :password, :password_confirm
+
   	authenticates_with_sorcery!
 
 	field :email, type: String
