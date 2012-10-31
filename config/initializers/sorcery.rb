@@ -136,7 +136,7 @@ Rails.application.config.sorcery.configure do |config|
     user.user_activation_mailer = UserMailer
     # user.activation_mailer_disabled =
     # user.activation_needed_email_method_name =
-    # user.activation_success_email_method_name =
+    user.activation_success_email_method_name = nil
     # user.prevent_non_active_users_to_login =
     # user.reset_password_token_attribute_name =
     # user.reset_password_token_expires_at_attribute_name =
