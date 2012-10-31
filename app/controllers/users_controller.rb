@@ -18,6 +18,8 @@ class UsersController < ProtectedController
 			@account.owners = [@user._id]
 			@account.save
 
+			AccessToken.generate(@user)
+
 			@user.account = @account
 			@user.save
 

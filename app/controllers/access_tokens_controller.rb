@@ -4,20 +4,7 @@ class AccessTokensController < ProtectedController
 	end
 
 	def generate
-		# TODO move to model as helper function
-		tokens = AccessToken.where(user: @current_user._id)
-		old_token = tokens.first
-
-		token = AccessToken.new(
-			:user => @current_user, 
-			:alias => "default",
-			:auth_token => rand_hexstring(29),
-			:auth_secret => rand_hexstring(48)
-			)
-
-		if token.save
-			old_token.destroy if old_token
-		end
+		AccessToken.generate(@current_user)
 
 		redirect_to user_access_tokens_path(@current_user)
 	end
