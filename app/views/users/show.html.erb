@@ -5,7 +5,41 @@
 <div class="row-fluid">
 	<div class="span8">
 		<div class="widget-box">
-			
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-refresh"></i>
+				</span>	
+				<h5>Account Details</h5>
+			</div>
+			<div class="widget-content">			
+			<table class="table">
+			<thead>
+				<tr>
+					<th>Key</th>
+					<th>Value</th>
+				</tr>
+			</thead>	
+			<tbody>
+				<tr>
+					<td>Account Type</td>
+					<td>BETA/PayG</td>					
+				</tr>
+				<tr>
+					<td>Account ID</td>
+					<td><%= @user.account.account_ref %></td>					
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td><%= @user.name %></td>					
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><%= @user.email %></td>					
+				</tr>
+
+			</tbody>
+			</table>
+			</div>
 		</div>
 	</div>
 	<div class="span4">
