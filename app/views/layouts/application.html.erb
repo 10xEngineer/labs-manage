@@ -35,40 +35,54 @@
     <%= favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-    <div id="main" class="container">
-        <div class="row">
-          <div class="offset9 span3">
-            <% if @current_user %>
-              <%= @current_user.email %>
-              <%= link_to "Logout", logout_url %>
-            <% end %>
-          </div>
+    
+    <div id="header">
+      <h1><a href="./dashboard.html">10xEngineer Labs</a></h1>   
+    </div>
+
+    <div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse" ><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+                <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="sAdd" title="" href="#">new message</a></li>
+                        <li><a class="sInbox" title="" href="#">inbox</a></li>
+                        <li><a class="sOutbox" title="" href="#">outbox</a></li>
+                        <li><a class="sTrash" title="" href="#">trash</a></li>
+                    </ul>
+                </li>
+                <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+            </ul>
         </div>
-        <div class="row">
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li class="nav-header">Account</li>
-                <li><%= link_to "Account Overview", user_path(current_user)  %></li>
-                <li><%= link_to "API Tokens", user_access_tokens_path(current_user)  %></li>
-                <li><%= link_to "SSH Keys", user_keys_path(current_user)  %></li>
-                <li class="nav-header">Resources</li>
-                <li><%= link_to "Lab Machines", "#"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-          <div class="span9">
-            <br/>
 
-             <%= yield %>
-          </div>
-        </div><!--/row-->
+<div id="sidebar">
+      <a href="#" class="visible-phone"><i class="icon icon-home"></i> Overview</a>
+      <ul>
+        <li class="active"><a href="<%= user_path(@current_user) %>"><i class="icon icon-home"></i> <span>Overview</span></a></li>
+        <li><a href="<%= user_access_tokens_path(current_user) %>"><i class="icon icon-home"></i> <span>API Keys</span></a></li>
+        <li><a href="<%= user_keys_path(current_user) %>"><i class="icon icon-home"></i> <span>SSH Keys</span></a></li>
+      </ul>
+    </div>        
 
-      <footer>
-        <p>&copy; Company 2012</p>
-      </footer>
+    <div id="content">
+      <div id="content-header">
+        <%= yield :content_header %>
+      </div>
 
-    </div> <!-- /container -->
+      <div class="container-fluid">
+          <% flash.each do |name, msg| %>
+              <% if msg.is_a?(String) %>
+                <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                  <a class="close" data-dismiss="alert">&#215;</a>
+                  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                </div>
+              <% end %>
+            <% end %>
+             <%= yield %>        
+      </div>
+
+    </div>
 
     <!-- Javascripts
     ================================================== -->
