@@ -21,6 +21,8 @@
 	</tbody>
 </table>
 
+<%= @key.errors.inspect %>
+
 <%= simple_form_for @key, :url => user_keys_path(@current_user), :html => { :class => 'form-horizontal' } do |f| %>
 	<legend>New key</legend>
 	<%= f.input :name %>
