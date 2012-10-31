@@ -2,29 +2,43 @@
 <h1>Overview</h1>
 <% end %>
 
-<section>
-	<dl class='left span4'>
-		<dt>Account type</dt>
-		<dd>BETA/Pay As You Go</dd>
-	</dl>
-	<dl class='right span4'>
-		<dt>Account ID</dt>
-		<dd><%= @user.account.account_ref %></dd>
-	</dl>
-	<dl class='left span4'>
-		<dt>Name</dt>
-		<dd><%= @user.name %></dd>
-	</dl>
-	<dl class='left span4'>
-		<dt>Email</dt>
-		<dd><%= @user.email %></dd>
-	</dl>
+<div class="row-fluid">
+	<div class="span8">
+		<div class="widget-box">
+			<div class="widget-title">	
+				<span class="icon">
+					<i class="icon-th-list"></i>
+				</span>
+				<h5>Account Details</h5>
+			</div>	
+			<div class="widget-content">		
+				<section>
+					<dl class='left span4'>
+						<dt>Account type</dt>
+						<dd>BETA/Pay As You Go</dd>
+					</dl>
+					<dl class='right span4'>
+						<dt>Account ID</dt>
+						<dd><%= @user.account.account_ref %></dd>
+					</dl>
+					<dl class='left span4'>
+						<dt>Name</dt>
+						<dd><%= @user.name %></dd>
+					</dl>
+					<dl class='left span4'>
+						<dt>Email</dt>
+						<dd><%= @user.email %></dd>
+					</dl>
 
-	<dl class='left span4'>
-		<dt>Created</dt>
-		<dd><%= @user.account.created_at %></dd>
-	</dl>
+					<dl class='left span4'>
+						<dt>Created</dt>
+						<dd><%= @user.account.created_at %></dd>
+					</dl>
 
-</section>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
 
 

@@ -2,24 +2,31 @@
 <h1>API Tokens</h1>
 <% end %>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Alias</th>
-			<th>Token</th>
-			<th>Secret</th>
-		</tr>
-	</thead>	
-	<tbody>
-		<% @tokens.each do |token| %>
-		<tr>
-			<td><%= token.alias %></td>
-			<td><%= token.auth_token %></td>
-			<td><%= token.auth_secret %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-content nopadding">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Alias</th>
+						<th>Token</th>
+						<th>Secret</th>
+					</tr>
+				</thead>	
+				<tbody>
+					<% @tokens.each do |token| %>
+					<tr>
+						<td><%= token.alias %></td>
+						<td><%= token.auth_token %></td>
+						<td><%= token.auth_secret %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 
 <%= link_to "Generate new", generate_user_access_tokens_path(@current_user), :class => "btn btn-info" %>
 
