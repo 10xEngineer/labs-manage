@@ -37,6 +37,14 @@
   <body>
     <div id="main" class="container">
         <div class="row">
+          <div class="offset9 span3">
+            <% if @current_user %>
+              <%= @current_user.email %>
+              <%= link_to "Logout", logout_url %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
           <div class="span3">
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
@@ -50,9 +58,6 @@
             </div><!--/.well -->
           </div><!--/span-->
           <div class="span9">
-            <% if @current_user %>
-            <%= @current_user.email %>
-            <% end %>
             <br/>
 
              <%= yield %>
