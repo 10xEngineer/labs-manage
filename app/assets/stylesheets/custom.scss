@@ -3,6 +3,11 @@
 }
 
 #new_key #key_public_key {
-	width: 98%;
+	width: 80%;
 	height: 100px;
+}
+
+.fingerprint {
+	font-family: courier, courier new;
+	font-size: 13px;
 }

@@ -6,7 +6,7 @@ class AccessTokensController < ProtectedController
 	def generate
 		AccessToken.generate(@current_user)
 
-		redirect_to user_access_tokens_path(@current_user)
+		redirect_to user_access_tokens_path(@current_user), :notice => "Default key updated. Please, make sure to update clients."
 	end
 
 private

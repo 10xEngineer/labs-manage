@@ -5,39 +5,40 @@
 <div class="row-fluid">
 	<div class="span8">
 		<div class="widget-box">
-			<div class="widget-title">	
+			
+		</div>
+	</div>
+	<div class="span4">
+		<div class="widget-box">
+			<div class="widget-title">
 				<span class="icon">
-					<i class="icon-th-list"></i>
-				</span>
-				<h5>Account Details</h5>
-			</div>	
-			<div class="widget-content">		
-				<section>
-					<dl class='left span4'>
-						<dt>Account type</dt>
-						<dd>BETA/Pay As You Go</dd>
-					</dl>
-					<dl class='right span4'>
-						<dt>Account ID</dt>
-						<dd><%= @user.account.account_ref %></dd>
-					</dl>
-					<dl class='left span4'>
-						<dt>Name</dt>
-						<dd><%= @user.name %></dd>
-					</dl>
-					<dl class='left span4'>
-						<dt>Email</dt>
-						<dd><%= @user.email %></dd>
-					</dl>
-
-					<dl class='left span4'>
-						<dt>Created</dt>
-						<dd><%= @user.account.created_at %></dd>
-					</dl>
-
-				</section>
+					<i class="icon-refresh"></i>
+				</span>	
+				<h5>Latest updates</h5>
+			</div>
+			
+			<div class="widget-content nopadding updates">
+				<div class="new-update clearfix">
+					<i class="icon-ok-sign"></i>
+					<span class="update-done">										
+						<a title="" href="#"><strong>eu-1-aws available!</strong></a>
+						<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+					</span>
+					<span class="update-date"><span class="update-day">01</span>oct</span>
+				</div>
+				
+				<div class="new-update clearfix">
+					<i class="icon-question-sign"></i>
+					<span class="update-notice">										
+						<a title="" href="#"><strong>Introducing Labs</strong></a>
+						<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+					</span>
+					<span class="update-date"><span class="update-day">01</span>oct</span>
+				</div>
+				
 			</div>
 		</div>
+	</div>		
 	</div>
 </div>
 
