@@ -1,10 +1,14 @@
-<%= simple_form_for @user, :url => sessions_path, :html => { :class => 'form-horizontal' } do |f| %>
-	<legend>Login</legend>
-	<%= f.input :email %>
-	<%= f.input :password %>
-	<div class="form-actions">
-		<%= f.submit 'Login', :class => "btn btn-primary" %>
-	</div>
-<% end %>
-
-Don't have 10xEngineer Labs account? <%= link_to "Sign up", signup_url %> today.
+<div id="logo">
+	<img src="img/logo.png" alt="10xEngineer Labs" />
+</div>
+<div id="loginbox">
+	<%= simple_form_for @user, :url => sessions_path, :html => { :class => 'form-vertical' } do |f| %>
+		<p>Enter username and password to continue.</p>
+		<%= f.input :email, :label => false, :placeholder => "Username", :wrapper => :unicorn %>
+		<%= f.input :password, :label => false, :placeholder => "Password", :wrapper => :unicorn %>
+		<div class="form-actions">
+            <span class="pull-left">Lost password?</span>
+            <span class="pull-right"><%= f.submit 'Login', :class => 'btn btn-inverse' %></span>
+		</div>
+	<% end %>
+</div>
