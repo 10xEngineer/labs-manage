@@ -18,12 +18,12 @@ class UsersController < ProtectedController
 			@account.owners = [@user._id]
 			@account.save
 
-			@user.def_account = @account._id
+			@user.account = @account
 			@user.save
 
 			redirect_to root_path, :notice => "Signed up!"
 		else
-			render :new
+			render :new, :layout => 'sessions'
 		end
 	end
 
