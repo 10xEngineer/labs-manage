@@ -1,6 +1,6 @@
 class UsersController < ProtectedController
-	before_filter :require_login, :except => [:new, :create]
-	before_filter :check_authorization, :except => [:new, :create]
+	before_filter :require_login, :except => [:new, :create, :activate]
+	before_filter :check_authorization, :except => [:new, :create, :activate]
 
 	def new
 		@user = User.new
@@ -26,6 +26,16 @@ class UsersController < ProtectedController
 			render :new, :layout => 'sessions'
 		end
 	end
+
+	def activate
+		if (@user = User.load_from_activation_token(params[:id]))
+			@user.activate!
+			redirect_to(login_path, :notice => 'User was successfully activated.')
+	  	else
+			not_authenticated
+		end
+	end
+
 
 	def show
 		@user = User.find_by(id: params[:id])

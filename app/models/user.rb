@@ -27,6 +27,11 @@ class User
 
 	has_many :access_tokens, :foreign_key => :user
 
+	# user activation
+	field :activation_state, type: String, default: nil
+	field :activation_token, type: String, default: nil
+	field :activation_token_expires_at, type: DateTime, default: nil
+
 	validates_confirmation_of :password, :on => :create
 	#validates_presence_of :password_confirmation, :if => :password_changed?
 end

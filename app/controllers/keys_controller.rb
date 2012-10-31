@@ -13,7 +13,7 @@ class KeysController < ProtectedController
   	@key.user_id = @current_user._id
 
   	if SSHKey.valid_ssh_public_key?(@key.public_key) && @key.save  		
-		redirect_to user_keys_path(@current_user), :notice => "New SSH Key added!"  		
+  		redirect_to user_keys_path(@current_user), :notice => "New SSH Key added!"  		
   	else
   		@keys = @current_user.keys
   		render :index

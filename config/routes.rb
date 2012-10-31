@@ -1,5 +1,9 @@
 ManageApp::Application.routes.draw do
   resources :users, :only => [:new, :create, :show] do
+    member do 
+      get :activate
+    end
+
     resources :access_tokens, :path => "tokens" do
       collection do 
         get :generate

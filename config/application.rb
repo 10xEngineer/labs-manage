@@ -64,5 +64,10 @@ module ManageApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Postmark App
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_key => "93b3e824-86c3-4a9e-b3bd-1eb02bb8f9e9" }
+    config.action_mailer.perform_deliveries = true
   end
 end
