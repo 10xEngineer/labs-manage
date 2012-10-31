@@ -132,7 +132,7 @@ Rails.application.config.sorcery.configure do |config|
     # user.activation_state_attribute_name =
     # user.activation_token_attribute_name =
     # user.activation_token_expires_at_attribute_name =
-    # user.activation_token_expiration_period =
+    user.activation_token_expiration_period = 2.days
     user.user_activation_mailer = UserMailer
     # user.activation_mailer_disabled =
     # user.activation_needed_email_method_name =
