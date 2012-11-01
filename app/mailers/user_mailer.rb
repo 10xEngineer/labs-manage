@@ -1,6 +1,5 @@
 class UserMailer < ActionMailer::Base
-  # TODO temporary for testing (need to setup DKIM on 10xEngineer.me)
-  default from: "darkside@opsfactory.com"
+  default from: "help@10xengineer.me"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -11,7 +10,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url = "http://gattaca.laststation.net:3000/users/#{user.activation_token}/activate"
 
-    mail to: user.email, subject: "10xEngineer Labs: Sign-up confirmation"
+    mail to: user.email, subject: "Labs: Sign-up confirmation"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
