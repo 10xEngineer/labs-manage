@@ -25,6 +25,14 @@ body {
     margin-right: auto;
     position: relative;
 }
+
+#signupbox {
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
 #logo {
     padding: 20px 0 20px 5px;
 }
@@ -43,6 +51,29 @@ body {
     position: relative;   
 }
 
+#signupbox {
+    background: #ffffff;
+    box-shadow: 0 0 4px #000000;
+    border-radius: 7px;
+    overflow: hidden !important;
+    position: relative;   
+}
+
+#signupbox .terms {
+    font-size: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#signupbox legend {
+    padding-left: 20px;
+}
+
+#signupbox .form-actions {
+    margin-bottom: -20px;
+    padding: 14px 20px 15px;
+}
+
 #loginbox form{
 	width:100%;
 	height:100%;
@@ -50,6 +81,7 @@ body {
 	top:0;
 	left:0;
 }
+
 #loginbox p {
     margin-top: 20px;
     padding: 0 20px;

@@ -5,7 +5,7 @@
 <% if @ssh_reminder %>
 <div class="alert">
 	<button type="button" class="close" data-dismiss="alert">×</button>
-  	<strong>Don't forget</strong> to <%= link_to "add your public key", user_keys_path(@current_user) %> in order to get secure shell access to Lab Machines.
+  	<strong>Don't forget</strong> <%= link_to "Add your public key", user_keys_path(@current_user) %> in order to get secure shell access to Lab Machines.
 </div>
 <% end %>
 

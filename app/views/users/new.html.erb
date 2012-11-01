@@ -1,11 +1,19 @@
+<div id="logo">
+	<img src="/assets/invert-logo.png" alt="10xEngineer Labs" />
+</div>
+<div id="signupbox">
 <%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-	<legend>User Details</legend>
-	<%= f.input :name %>
+<p>&nbsp;</p>
+	<legend>Create an account</legend>
+	<%= f.input :name, :required => true %>
 	<%= f.input :email %>
 	<%= f.input :password %>
-	<%= f.input :password_confirmation %>
-	<%= f.input :tc_agreed, :as => :boolean %>
+	<%= f.input :password_confirmation, :label => "Password<br/>confirmation" %>
+	<p class="terms">By clicking on 'Create account' button below, you confirm that you have read and accept our
+		<a href="http://www.10xengineer.me/legal/terms-of-use">terms of use</a> and <a href="http://www.10xengineer.me/legal/privacy">privacy policy</a>.</p>
 	<div class="form-actions">
-		<%= f.submit 'Sign Up', :class => "btn btn-primary" %>
+        <span class="pull-left">&nbsp;</span>
+        <span class="pull-right"><%= f.submit 'Create account', :class => 'btn btn-inverse' %></span>
 	</div>
 <% end %>
+</div>

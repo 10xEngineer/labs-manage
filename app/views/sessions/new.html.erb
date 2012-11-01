@@ -7,7 +7,10 @@
 		<%= f.input :email, :label => false, :placeholder => "Username", :wrapper => :unicorn %>
 		<%= f.input :password, :label => false, :placeholder => "Password", :wrapper => :unicorn %>
 		<div class="form-actions">
-            <span class="pull-left">Lost password?</span>
+			<!--
+            <span class="pull-left"><a href="Lost password?</span>
+        	-->
+        	<span class="pull-left">Don't have account? <a href="/signup">Sign up</a> today.</span>
             <span class="pull-right"><%= f.submit 'Login', :class => 'btn btn-inverse' %></span>
 		</div>
 	<% end %>
