@@ -21,6 +21,8 @@ class User
 	has_many :access_tokens
 	has_many :keys
 
+	field :limits, type: Hash
+
 	field :service, type: Boolean, default: false
 	field :disabled, type: Boolean, default: false
 	field :tc_agreed, type: Boolean, default: false

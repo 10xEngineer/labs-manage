@@ -16,6 +16,17 @@ class UsersController < ProtectedController
 		# TODO unique email
 		@user = User.new(params[:user])
 
+		# apply default limits
+		# FIXME hardcoded default profile
+		@profile = Profile.find_by(name: "beta_public")
+
+		@user.limits = {}
+
+		limited_resources = @profile.fields.reject {|f| ["_type","_id","created_at","updated_at", "name"].include?(f) }
+		limited_resources.keys.each do |res|
+			@user.limits[res] = @profile.send(res).to_i
+		end
+
 		if @user.save
 			@account = Account.new
 			@account.account_ref = Account.gen_reference

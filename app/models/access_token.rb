@@ -22,7 +22,7 @@ class AccessToken
 		token = AccessToken.new(
 			:user => user, 
 			:alias => "default",
-			:auth_token => rand_hexstring(29),
+			:auth_token => rand_hexstring(28),
 			:auth_secret => rand_hexstring(48)
 			)
 
