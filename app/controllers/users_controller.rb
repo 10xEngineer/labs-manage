@@ -2,6 +2,10 @@ class UsersController < ProtectedController
 	before_filter :require_login, :except => [:new, :create, :activate]
 	before_filter :check_authorization, :except => [:new, :create, :activate]
 
+	def index
+		redirect user_path(@current_user)
+	end
+
 	def new
 		@user = User.new
 

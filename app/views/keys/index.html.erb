@@ -9,6 +9,8 @@
 	</div>
 <% end %>
 
+<% if @keys.empty? %>
+<% else %>
 <div class="row-fluid">
 	<div class="span12">
 		<div class="widget-box">
@@ -36,6 +38,7 @@
 		</div>
 	</div>
 </div>
+<% end %>
 
 <div class="row-fluid">
 	<div class="span12">
@@ -48,7 +51,7 @@
 			</div>
 			<div class="widget-content nopadding">
 				<%= simple_form_for @key, :url => user_keys_path(@current_user), :html => { :class => 'form-horizontal' } do |f| %>
-					<%= f.input :name %>
+					<%= f.input :name, :placeholder => 'default' %>
 					<%= f.input :public_key, :as => :text %>
 					<div class="form-actions">
 						<%= f.submit 'Add key', :class => "btn btn-primary" %>

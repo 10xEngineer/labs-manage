@@ -12,4 +12,5 @@
  *= require 'bootstrap.min'
  *= require 'bootstrap-responsive'
  *= require 'unicorn.login'
+ *= require 'custom'
  */

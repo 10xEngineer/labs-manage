@@ -1,5 +1,5 @@
 ManageApp::Application.routes.draw do
-  resources :users, :only => [:new, :create, :show] do
+  resources :users, :only => [:new, :create, :show, :index] do
     member do 
       get :activate
     end

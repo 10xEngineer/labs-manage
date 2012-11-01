@@ -8,4 +8,7 @@ class Key
 	field :public_key, type: String
 
 	belongs_to :user	
+
+	validates_presence_of :name
+	validates_presence_of :public_key
 end

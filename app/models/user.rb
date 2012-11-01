@@ -32,7 +32,7 @@ class User
 	field :activation_token, type: String, default: nil
 	field :activation_token_expires_at, type: DateTime, default: nil
 
-	validates :tc_agreed, :acceptance => {:accept => true}
+	#validates :tc_agreed, :acceptance => {:accept => true}
 	validates_uniqueness_of :email
 	validates_presence_of :email
 	validates_presence_of :password, :on => :create
