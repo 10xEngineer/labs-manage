@@ -1165,10 +1165,10 @@ span.icon .checker {
 }
 .dataTables_paginate span .ui-state-disabled, .pagination.alternate li.active a {
     background-color: #414141 !important;
-    background-image: -moz-linear-gradient(center top , #555555, #222222) !important;
+    background-image: -moz-linear-gradient(center top , #555555, #222222);
     background-image: -ms-linear-gradient(top, #555555, #222222) !important;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555555), to(#222222)) !important;
-    background-image: -webkit-linear-gradient(top, #555555, #222222); !important
+    background-image: -webkit-linear-gradient(top, #555555, #222222) !important;
     background-image: -o-linear-gradient(top, #555555, #222222) !important;
     background-image: linear-gradient(top, #555555, #222222) !important;
     color: #ffffff !important;
