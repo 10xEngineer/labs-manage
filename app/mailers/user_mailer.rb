@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   #
   def activation_needed_email(user)
     @user = user
-    @url = "http://gattaca.laststation.net:3000/users/#{user.activation_token}/activate"
+    @url = "http://manage.10xlabs.net/users/#{user.activation_token}/activate"
 
     mail to: user.email, subject: "Labs: Sign-up confirmation"
   end
