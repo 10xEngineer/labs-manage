@@ -55,6 +55,7 @@
       <a href="#" class="visible-phone"><i class="icon icon-home"></i> Overview</a>
       <ul>
         <li <%= is_active?("users") %>><a href="<%= user_path(@current_user) %>"><i class="icon icon-home"></i> <span>Overview</span></a></li>
+        <li <%= is_active?("help") %>><a href="<%= user_help_index_path(@current_user) %>"><i class="icon icon-home"></i> <span>Getting Started</span></a></li>
         <li <%= is_active?("access_tokens") %>><a href="<%= user_access_tokens_path(current_user) %>"><i class="icon icon-upload"></i> <span>API Keys</span></a></li>
         <li <%= is_active?("keys") %>><a href="<%= user_keys_path(current_user) %>"><i class="icon icon-book"></i> <span>SSH Keys</span></a></li>
       </ul>

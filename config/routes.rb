@@ -4,6 +4,8 @@ ManageApp::Application.routes.draw do
       get :activate
     end
 
+    resources :help, :only => [:index]
+
     resources :access_tokens, :path => "tokens" do
       collection do 
         get :generate

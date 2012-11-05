@@ -1,0 +1,48 @@
+<% content_for :content_header do %>
+<h1>Getting started with 10xEngineer Labs</h1>
+<% end %>
+
+
+<p>Welcome to Labs by 10xEngineer! Most interaction with Labs happens via API clients at the moment - either our command-line interface (CLI) or directly through REST API. This is a quick overview to get you started. For comprehensive instructions, please, check our <a href="https://10xengineer.zendesk.com/entries/22324447-getting-started-with-labs">introductory article</a> on support portal.</p>
+
+<h4>Setup your account</h4>
+
+To use any API client you need to finish following steps:
+
+<ul>
+	<li>Create a <em>default</em> <%= link_to "SSH Key", user_keys_path(current_user) %> which will be used to grant access to Lab Machines.</li>
+	<li>Get <%= link_to "API access tokens", user_access_tokens_path %> for authentication.
+</ul>
+
+<h4>Install Labs CLI</h4>
+
+<p>Command-line interface (CLI) tool is available as RubyGem. To install it you have to have Ruby (preferably 1.9.3 installed).</p>
+
+<pre>
+$ gem install labs
+</pre>
+
+<p>Configure API access tokens and follow on-screen instructions.</p>
+
+<pre>
+$ labs configure
+</pre>
+
+<h4>Your first Lab Machine</h4>
+
+<p>It's easy to get started. Create new machine and log-in using</p>
+<pre>
+
+$ lab-machines create
+Machine 'blue-gargoyle' started.
+
+$ lab-machine ssh blue-gargoyle
+Welcome to Ubuntu 12.04.1 LTS (GNU/Linux 3.5.0-17-generic x86_64)
+
+lab@blue-gargoyle:~$ 
+</pre>
+
+<p>To acccess lab machine without entering the password (default password is <em>lab</em>) you have to load registered SSH Key into the SSH Agent. More information at <a href="https://10xengineer.zendesk.com/entries/22324447-getting-started-with-labs">support portal</a>.</p>
+
+<h4>Talk to us</h4>
+<p>Labs are in public BETA. We will appreciate any comments. Simple send email to <a href="mailto:hello@10xengineer.me">hello@10xengineer.me</a></p>
