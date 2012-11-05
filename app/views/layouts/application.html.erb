@@ -85,5 +85,23 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.5/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(//assets.zendesk.com/external/zenbox/v2.5/zenbox.css);
+</style>
+<script type="text/javascript">
+  if (typeof(Zenbox) !== "undefined") {
+    Zenbox.init({
+      dropboxID:   "20112288",
+      url:         "https://10xengineer.zendesk.com",
+      tabID:       "Questions",
+      tabColor:    "green",
+      tabPosition: "Right",
+      requester_name: "<%= @current_user.name %>",
+      requester_email: "<%= @current_user.email %>"
+    });
+  }
+</script>
+
   </body>
 </html>
