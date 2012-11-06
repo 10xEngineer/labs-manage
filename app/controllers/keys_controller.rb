@@ -9,7 +9,11 @@ class KeysController < ProtectedController
 
   def create
   	@key = Key.new(params[:key])
-  	@key.fingerprint = SSHKey.fingerprint(@key.public_key)
+
+    parts = @key.public_key.split(' ')
+    _key = parts[0..1].join(' ')
+
+  	@key.fingerprint = SSHKey.fingerprint(_key)
   	@key.user_id = @current_user._id
 
   	if SSHKey.valid_ssh_public_key?(@key.public_key) && @key.save  		
