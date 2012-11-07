@@ -4,8 +4,6 @@ class KeysController < ProtectedController
   def index
     begin
       @keys = Key.where(user_id: @current_user._id).to_a
-
-      @keys = @keys.select {|k| k.deleted_at.nil?}
     rescue Mongoid::Errors::DocumentNotFound
       @keys = []
     end
@@ -27,8 +25,6 @@ class KeysController < ProtectedController
   	else
       begin
         @keys = Key.where(user_id: @current_user._id).to_a
-
-        @keys.reject {|k| !k.deleted_at.nil?}
       rescue Mongoid::Errors::DocumentNotFound
         @keys = []
       end
@@ -39,10 +35,7 @@ class KeysController < ProtectedController
 
   def destroy
   	@key = Key.find_by(name: params[:id])
-    @key.deleted_at = Time.now.utc
-  	@key.save
-
-    @current_user.reload
+    @key.destroy
 
     logger.warn "key=#{@key._id} removed by user=#{@current_user._id}"
 
