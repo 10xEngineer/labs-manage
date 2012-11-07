@@ -26,7 +26,10 @@ class KeysController < ProtectedController
 
   def destroy
   	@key = Key.find_by(name: params[:id])
-  	@key.destroy
+    @key.deleted_at = Date.new
+  	@key.save
+
+    logger.warn "key=#{@key._id} removed by user=#{@current_user._id}"
 
   	redirect_to user_keys_path(@current_user), :notice => "SSH Key removed!"
   end
