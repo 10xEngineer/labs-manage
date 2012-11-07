@@ -9,7 +9,6 @@ class ProtectedController < ApplicationController
 			redirect_to user_path(@current_user)
 		end
 	end
-
 private
 
 	def not_authenticated
