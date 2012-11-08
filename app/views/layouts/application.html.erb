@@ -52,7 +52,6 @@
         </div>
 
 <div id="sidebar">
-      <a href="#" class="visible-phone"><i class="icon icon-home"></i> Overview</a>
       <ul>
         <li <%= is_active?("users") %>><a href="<%= user_path(@current_user) %>"><i class="icon icon-home"></i> <span>Overview</span></a></li>
         <li <%= is_active?("help") %>><a href="<%= user_help_index_path(@current_user) %>"><i class="icon icon-home"></i> <span>Getting Started</span></a></li>
