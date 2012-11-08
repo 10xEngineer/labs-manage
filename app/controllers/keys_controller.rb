@@ -37,7 +37,7 @@ class KeysController < ProtectedController
   	@key = Key.find_by(name: params[:id])
     @key.destroy
 
-    logger.warn "key=#{@key._id} removed by user=#{@current_user._id}"
+    logger.warn "#{Time.new.utc} key=#{@key._id} removed by user=#{@current_user._id}"
 
   	redirect_to user_keys_path(@current_user), :notice => "SSH Key removed!"
   end
