@@ -1,4 +1,8 @@
 ManageApp::Application.routes.draw do
+  namespace :admin do
+    get "/" => "home#index"
+  end
+
   resources :users, :only => [:new, :create, :show, :index] do
     member do 
       get :activate

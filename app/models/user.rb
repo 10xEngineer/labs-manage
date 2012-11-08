@@ -11,6 +11,8 @@ class User
 
 	field :email, type: String
 	field :name, type: String
+
+	field :role, type:String, default: nil
 	
 	field :cpwd, type: String
 	field :salt, type: String
@@ -39,4 +41,8 @@ class User
 	validates_presence_of :email
 	validates_presence_of :password, :on => :create
 	validates_confirmation_of :password, :on => :create
+
+	def is_admin?
+		self.role == "admin"
+	end
 end
