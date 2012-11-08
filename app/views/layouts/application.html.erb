@@ -59,7 +59,7 @@
         <li <%= is_active?("access_tokens") %>><a href="<%= user_access_tokens_path(current_user) %>"><i class="icon icon-upload"></i> <span>API Keys</span></a></li>
         <li <%= is_active?("keys") %>><a href="<%= user_keys_path(current_user) %>"><i class="icon icon-book"></i> <span>SSH Keys</span></a></li>
         <% if @current_user.is_admin? %>
-        <li <%= is_active?("xx") %>><a href="<%= admin_path %>"><i class="icon icon-home"></i> <span>Admin</span></a></li>
+        <li <%= is_active?("admin/home") %>><a href="<%= admin_path %>"><i class="icon icon-home"></i> <span>Admin</span></a></li>
         <% end %>
       </ul>
     </div>        
