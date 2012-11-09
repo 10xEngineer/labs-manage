@@ -8,13 +8,13 @@
 			<ul class="stat-boxes">
 				<li>
 					<div class="right">
-						<strong><%= User.all.count %></strong>
+						<strong><%= User.where(:service => false).count %></strong>
 						Total Users
 					</div>
 				</li>
 				<li>
 					<div class="right">
-						<strong><%= User.where(:created_at.gte => Time.now - 1.day).count %></strong>
+						<strong><%= User.where(:service => false, :created_at.gte => Time.now - 1.day).count %></strong>
 						Users/24h
 					</div>
 				</li>
