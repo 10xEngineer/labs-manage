@@ -34,7 +34,7 @@ class KeysController < ProtectedController
   end
 
   def destroy
-  	@key = Key.find_by(name: params[:id])
+  	@key = Key.find_by(name: params[:id], user_id: params[:user_id])
     @key.destroy
 
     logger.warn "#{Time.new.utc} key=#{@key._id} removed by user=#{@current_user._id}"
