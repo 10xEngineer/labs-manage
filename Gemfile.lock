@@ -136,6 +136,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    validates_email_format_of (1.5.3)
 
 PLATFORMS
   ruby
@@ -153,3 +154,4 @@ DEPENDENCIES
   sshkey
   uglifier (>= 1.0.3)
   unicorn
+  validates_email_format_of

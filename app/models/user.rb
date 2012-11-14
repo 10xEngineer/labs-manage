@@ -42,6 +42,8 @@ class User
 	validates_presence_of :password, :on => :create
 	validates_confirmation_of :password, :on => :create
 
+	validates :email, :email_format => {:message => 'is not valid email address'}
+
 	def is_admin?
 		self.role == "admin"
 	end
