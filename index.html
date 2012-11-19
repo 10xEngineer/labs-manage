@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>10xEngineer Labs</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular-resource.min.js"></script>
+    <script type="text/javascript" src="assets/js/application.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">10xEngineer Labs</a>
+          <ul id="mainNav" class="nav">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="content" class="container"  ng-app="labs" ng-controller="LabsController">
+      <h3>Your Lab Machines:</h3>
+      <a class="btn" href="#" ng-click="createMachine(lab.name)">Create</a>
+      <a class="btn" href="#" ng-click="refresh()">Refresh</a>
+      <table class="machineList">
+        <tr>
+          <th>Name</th>
+          <th>State</th>
+          <th>Delete</th>
+        </tr>
+        <tr ng-repeat="lab in labs">
+          <td>{{lab.name}}</td>
+          <td>{{lab.state}}</td>
+          <td class="center"><a class="btn btn-red" href="#" ng-click="deleteMachine(lab.name)">Delete</a></td>
+        </tr>
+      </table>
+    </div>
+    <footer>
+      <div class="container">
+        <span>&copy; 2012. 10xEngineer Ltd.</span>
+      </div>
+    </footer>
+  </body>
+</html>

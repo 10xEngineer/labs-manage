@@ -1,0 +1,48 @@
+::-moz-selection {
+  background: #4cacdf;
+  color: #fff;
+  text-shadow: none;
+}
+::selection {
+  background: #4cacdf;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* Custom Style */
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background-color: white;
+}
+footer {
+  padding: 30px 0;
+  border-top: 1px solid #E5E5E5;
+  background-color: whiteSmoke;
+}
+#content {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 40px auto -79px; /* the bottom margin is the negative value of the footer's height */
+}
+table.machineList {
+  width: 400px;
+  border: solid 1px;
+}
+table.machineList tr {
+  border: solid 1px;
+}
+table.machineList td, table.machineList th {
+  border-right: solid 1px;
+}
+
+.center {
+  text-align: center;
+}
+/* Custom Style Ends */
