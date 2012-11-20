@@ -21,6 +21,7 @@ class KeysController < ProtectedController
   	@key.user_id = @current_user._id
 
   	if SSHKey.valid_ssh_public_key?(@key.public_key) && @key.save  		
+      $customerio.delay.track(@current_user, "key_created")
   		redirect_to user_keys_path(@current_user), :notice => "New SSH Key added!"  		
   	else
       begin
@@ -36,6 +37,8 @@ class KeysController < ProtectedController
   def destroy
   	@key = Key.find_by(name: params[:id], user_id: params[:user_id])
     @key.destroy
+
+    $customerio.delay.track(@current_user, "key_destroyed")
 
     logger.warn "#{Time.new.utc} key=#{@key._id} removed by user=#{@current_user._id}"
 
