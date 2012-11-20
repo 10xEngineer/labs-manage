@@ -36,6 +36,7 @@
 					<tr>
 						<th>Name</th>
 						<th>Email</th>
+						<th>Keys</th>
 						<th>Created</th>
 					</tr>
 				</thead>	
@@ -44,6 +45,7 @@
 					<tr>
 						<td><%= user.name %></td>
 						<td><%= user.email %></td>
+						<td><%= user.keys.count %></td>
 						<td><%= user.created_at %></td>
 					</tr>
 					<% end %>
