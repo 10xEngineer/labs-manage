@@ -1,13 +1,35 @@
+var ENDPOINT = 'http://api.eu-1-aws.10xlabs.net/v1';
+var TOKEN = '';
+var SECRET = '';
 
 /* Modules */
 
-angular.module('labs', ['ngResource']).
-  factory('Lab', function($resource) {
-    var Lab = $resource('http://labs.apiary.io/v1/machines/:machineId', { machineId: '@name'}, {
-      query: { method:'GET', headers: { 'X-Labs-Token': '6d6574972c198f76455d4eeb61ec', 'X-Labs-Signature': '324c8faefd63b882f4a7e486daaeb21f5be0c01e77ddc651' }, isArray:true },
-      get: { method:'GET', headers: { 'X-Labs-Token': '6d6574972c198f76455d4eeb61ec', 'X-Labs-Signature': '324c8faefd63b882f4a7e486daaeb21f5be0c01e77ddc651' } },
-      remove: { method:'DELETE', headers: { 'X-Labs-Token': '6d6574972c198f76455d4eeb61ec', 'X-Labs-Signature': '324c8faefd63b882f4a7e486daaeb21f5be0c01e77ddc651' } },
-      create: { method:'POST', headers: { 'X-Labs-Token': '6d6574972c198f76455d4eeb61ec', 'X-Labs-Signature': '324c8faefd63b882f4a7e486daaeb21f5be0c01e77ddc651' } },
+var calculateHash = function(token, secret, method, url, date, data) {
+  var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secret);
+  hmac.update(method);
+  hmac.update(url);
+  hmac.update(date);
+  hmac.update(token);
+
+  if(data) {
+    if(typeof(data) === 'string') {
+      hmac.update(data);
+    } else {      
+      hmac.update(JSON.stringify(data));
+    }
+  }
+
+  var hash = hmac.finalize().toString(CryptoJS.enc.Base64);
+  return hash;
+};
+
+angular.module('labs', ['customResource']).
+  factory('Lab', function($customResource) {
+    var Lab = $customResource(ENDPOINT + '/machines/:machineId', { machineId: '@name'}, {
+      query: { method:'GET', isArray:true },
+      get: { method:'GET' },
+      remove: { method:'DELETE' },
+      create: { method:'POST' },
     });
     return Lab;
 });
@@ -16,14 +38,17 @@ angular.module('labs', ['ngResource']).
 /* Controllers */
 
 function LabsController($scope, Lab) {
-  $scope.labs = Lab.query();
+  $scope.token = TOKEN;
+  $scope.secret = SECRET;
 
   $scope.refresh = function() {
-    return $scope.labs = Lab.query();
+    var date = new Date().toUTCString();
+    $scope.labs = Lab.query({}, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'GET', '/machines', date) });
   };
 
   $scope.deleteMachine = function(name) {
-    Lab.remove({ machineId: name }, function() {
+    var date = new Date().toUTCString();
+    Lab.remove({ machineId: name }, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'DELETE', '/machines/' + name, date) }, function() {
       console.log('Deleted Successfully.');
       $scope.refresh();
     },
@@ -33,7 +58,9 @@ function LabsController($scope, Lab) {
   };
 
   $scope.createMachine = function() {
-    Lab.create({ "template": "ubuntu-precise64", "key": "default" }, function() {
+    var date = new Date().toUTCString();
+    var data = { "template": "ubuntu-precise64", "key": "default", "size": "512", "pool": "default" };
+    Lab.create({}, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'POST', '/machines', date, data) }, data, function() {
       console.log('Success.');
       $scope.refresh();
     },
@@ -41,6 +68,8 @@ function LabsController($scope, Lab) {
       console.log('Error!');
     });
   };
+
+  $scope.refresh();
 }
 
 //LabsController.$inject = ['$scope', 'Lab'];

@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
     <script type="text/javascript" src="assets/js/angular.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular-resource.min.js"></script>
+    <script type="text/javascript" src="assets/js/custom-resource.js"></script>
     <script type="text/javascript" src="assets/js/application.js"></script>
   </head>
   <body>
@@ -21,6 +23,11 @@
       </div>
     </div>
     <div id="content" class="container"  ng-app="labs" ng-controller="LabsController">
+      <h3>Your Lab API Credentials:</h3>
+      <label for="token">Token:</label>
+      <input type="text" id="token" ng-model="token">
+      <label for="secret">Secret:</label>
+      <input type="text" id="secret" ng-model="secret">
       <h3>Your Lab Machines:</h3>
       <a class="btn" href="#" ng-click="createMachine(lab.name)">Create</a>
       <a class="btn" href="#" ng-click="refresh()">Refresh</a>
