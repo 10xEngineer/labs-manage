@@ -1,4 +1,5 @@
 require 'sshkey'
+require 'key'
 
 class KeysController < ProtectedController
   def index
@@ -13,6 +14,14 @@ class KeysController < ProtectedController
 
   def create
   	@key = Key.new(params[:key])
+
+    # check pem public key
+    key = @key.public_key.strip
+    if key.match /^-----BEGIN/
+      pem_key = KeyConvertor.new(@key.public_key)
+
+      @key.public_key = pem_key.ssh_public_key
+    end
 
     parts = @key.public_key.split(' ')
     _key = parts[0..1].join(' ')
