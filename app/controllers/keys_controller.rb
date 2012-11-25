@@ -39,7 +39,7 @@ class KeysController < ProtectedController
         @keys = []
       end
 
-  		render :index
+  		redirect_to user_keys_path(@current_user), :notice => "Invalid SSH Key"      
   	end
   end
 
