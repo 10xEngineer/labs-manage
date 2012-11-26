@@ -188,7 +188,6 @@ angular.module('customResource', ['ng']).
           return ResourceFactory(url, extend({}, paramDefaults, additionalParamDefaults), actions);
         };
 
-
         Resource.prototype['$' + name] = function(a1, a2, a3) {
           var params = extractParams(this),
               success = noop,

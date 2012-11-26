@@ -31,18 +31,16 @@ footer {
   height: 100%;
   margin: 40px auto -79px; /* the bottom margin is the negative value of the footer's height */
 }
-table.machineList {
-  width: 400px;
-  border: solid 1px;
-}
-table.machineList tr {
-  border: solid 1px;
-}
-table.machineList td, table.machineList th {
-  border-right: solid 1px;
-}
 
 .center {
   text-align: center;
+}
+
+#content > .btn {
+  margin-bottom: 10px;
+}
+
+.machineList .popover {
+  width: auto;
 }
 /* Custom Style Ends */

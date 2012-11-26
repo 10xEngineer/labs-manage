@@ -8,6 +8,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/custom-resource.js"></script>
     <script type="text/javascript" src="assets/js/application.js"></script>
@@ -28,26 +29,59 @@
       <input type="text" id="token" ng-model="token">
       <label for="secret">Secret:</label>
       <input type="text" id="secret" ng-model="secret">
+      <!-- Waiting Modal -->
+      <div id="machineInfo" ng-show="alertMessage" ng-class="alertClass" class="alert alert-block" tabindex="-1" role="dialog" data-backdrop="true">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4 class="alert-heading">{{alertMessage}}</h4>
+      </div>
       <h3>Your Lab Machines:</h3>
-      <a class="btn" href="#" ng-click="createMachine(lab.name)">Create</a>
+      <a class="btn" href="#" ng-click="createMachine()">Create</a>
       <a class="btn" href="#" ng-click="refresh()">Refresh</a>
-      <table class="machineList">
-        <tr>
-          <th>Name</th>
-          <th>State</th>
-          <th>Delete</th>
-        </tr>
-        <tr ng-repeat="lab in labs">
-          <td>{{lab.name}}</td>
-          <td>{{lab.state}}</td>
-          <td class="center"><a class="btn btn-red" href="#" ng-click="deleteMachine(lab.name)">Delete</a></td>
-        </tr>
-      </table>
+      <div class="row-fluid">
+        <div class="span12">
+          <table class="table table-bordered table-striped machineList">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>State</th>
+                <th>Info</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="lab in labs">
+                <td>{{lab.name}}</td>
+                <td>{{lab.state}}</td>
+                <td class="center"><a href="#" class="machineInfo" machine-info="{{lab.name}}">info</a></td>
+                <td class="center"><a href="#" data-toggle="modal" data-target="#confirm" ng-click="setLabForDeletion(lab.name)">Delete</a></td>
+              </tr>
+              <tr ng-show="isLoading">
+                <td colspan="4">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Confirmation Modal -->
+      <div id="confirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="title">Confirm Deletion</h3>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to destroy the lab <strong>{{labDelete}}</strong>?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" ng-click="deleteMachine(labDelete)">Yes</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+        </div>
+      </div>
     </div>
     <footer>
       <div class="container">
         <span>&copy; 2012. 10xEngineer Ltd.</span>
       </div>
     </footer>
+    <script type="text/javascript" src="assets/js/page.js"></script>
   </body>
 </html>
