@@ -93,7 +93,7 @@ angular.module('labs', ['customResource']).
               </tr>\
             </table>')(scope.$parent);
             console.log(temp);
-            element.popover({
+            element.clickover({
               title: attrs.machineInfo,
               html: true,
               content: temp
