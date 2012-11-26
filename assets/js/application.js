@@ -122,6 +122,8 @@ function LabsController($scope, Lab) {
 
     if(response.status === 401) {
       $scope.alertMessage = 'Invalid Credentials.';
+    } else if(response.status === 412) {
+      $scope.alertMessage = 'API Credentials are required.';
     }
   };
 
