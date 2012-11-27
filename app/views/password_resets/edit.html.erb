@@ -1,0 +1,26 @@
+<div id="logo">
+	<img src="/assets/invert-logo.png" alt="10xEngineer Labs" />
+	</div>
+  <div id="sessions">
+  <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+
+<div id="resetbox" class="reset2">	
+	<%= simple_form_for @user, :url => password_reset_path(@user), :html => { :class => 'form-vertical' } do |f| %>
+		<p>Enter new password</p>
+		<%= f.input :password, :label => false, :placeholder => "Password", :wrapper => :unicorn %>
+		<%= f.input :password_confirmation, :label => false, :placeholder => "Confirmation", :wrapper => :unicorn %>
+		<%= f.input :token, :as => :hidden, :input_html => { :value => @token } %>
+		<div class="form-actions">
+        	<span class="pull-left">Don't have account? <a href="/signup">Sign up</a> today. <br/></span>
+            <span class="pull-right"><%= f.submit 'Change', :class => 'btn btn-inverse' %></span>
+		</div>
+	<% end %>
+</div>

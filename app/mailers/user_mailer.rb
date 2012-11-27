@@ -24,4 +24,11 @@ class UserMailer < ActionMailer::Base
 
     mail to: user.email, subject: "Welcome to Labs!"
   end
+
+  def reset_password_email(user)
+    @user = user
+    @url = "http://manage.10xlabs.net/password_resets/#{user.reset_password_token}/edit"
+
+    mail to: user.email, subject: "Password reset"
+  end
 end
