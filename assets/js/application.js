@@ -98,6 +98,7 @@ angular.module('labs', ['customResource']).
               html: true,
               content: temp
             });
+
           };
         }, true);
       });
@@ -117,14 +118,10 @@ function LabsController($scope, Lab) {
   };
 
   var error = function(response) {
-    $scope.alertMessage = 'An unknown error occurred.';
-    $scope.alertClass = 'alert-error';
+    var message = response && response.data ? response.data.message : undefined;
 
-    if(response.status === 401) {
-      $scope.alertMessage = 'Invalid Credentials.';
-    } else if(response.status === 412) {
-      $scope.alertMessage = 'API Credentials are required.';
-    }
+    $scope.alertClass = 'alert-error';
+    $scope.alertMessage = message || "An unknown error occurrd";
   };
 
   $scope.refresh = function() {
