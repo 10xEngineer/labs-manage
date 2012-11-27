@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
 		@user = User.find_by_email(params[:user][:email])
 
 		if @user
-			@user.delay.deliver_reset_password_instructions!
+			@user.deliver_reset_password_instructions!
 
 			redirect_to login_path, :notice => "Instructions have been sent to your email."
 		else
