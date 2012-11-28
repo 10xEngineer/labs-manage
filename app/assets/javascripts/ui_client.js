@@ -1,0 +1,7 @@
+//= require "bootstrap-main.min"
+//= require "bootstrapx-clickover"
+//= require "angular.min"
+//= require "custom-resource"
+//= require "hmac-sha256"
+//= require "enc-base64-min"
+//= require "dashboard"
