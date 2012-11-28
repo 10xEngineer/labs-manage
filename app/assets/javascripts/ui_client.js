@@ -1,4 +1,4 @@
-//= require "angular"
+//= require "angular.min"
 //= require "custom-resource"
 //= require "bootstrap-main.min"
 //= require "bootstrapx-clickover"
