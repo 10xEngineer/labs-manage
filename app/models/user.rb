@@ -36,6 +36,12 @@ class User
 	field :activation_token, type: String, default: nil
 	field :activation_token_expires_at, type: DateTime, default: nil
 
+	field :reset_password_token, type: String, default: nil
+	field :reset_password_token_expires_at, type: DateTime, default: nil
+	field :reset_password_email_sent_at, type: DateTime, default: nil
+
+	field :customer_io, type: Boolean, default: false
+
 	#validates :tc_agreed, :acceptance => {:accept => true}
 	validates_uniqueness_of :email
 	validates_presence_of :email

@@ -47,6 +47,9 @@ class UsersController < ProtectedController
 	def activate
 		if (@user = User.load_from_activation_token(params[:id]))
 			@user.activate!
+
+			$customerio.delay.identify(@user, name: @user.name)
+			
 			redirect_to(login_path, :notice => 'User was successfully activated.')
 	  	else
 			not_authenticated

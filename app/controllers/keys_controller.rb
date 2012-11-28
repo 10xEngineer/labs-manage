@@ -1,4 +1,5 @@
 require 'sshkey'
+require 'key'
 
 class KeysController < ProtectedController
   def index
@@ -14,6 +15,14 @@ class KeysController < ProtectedController
   def create
   	@key = Key.new(params[:key])
 
+    # check pem public key
+    key = @key.public_key.strip
+    if key.match /^-----BEGIN/
+      pem_key = KeyConvertor.new(@key.public_key)
+
+      @key.public_key = pem_key.ssh_public_key
+    end
+
     parts = @key.public_key.split(' ')
     _key = parts[0..1].join(' ')
 
@@ -21,6 +30,7 @@ class KeysController < ProtectedController
   	@key.user_id = @current_user._id
 
   	if SSHKey.valid_ssh_public_key?(@key.public_key) && @key.save  		
+      $customerio.delay.track(@current_user, "key_created")
   		redirect_to user_keys_path(@current_user), :notice => "New SSH Key added!"  		
   	else
       begin
@@ -29,13 +39,15 @@ class KeysController < ProtectedController
         @keys = []
       end
 
-  		render :index
+  		redirect_to user_keys_path(@current_user), :notice => "Invalid SSH Key"      
   	end
   end
 
   def destroy
   	@key = Key.find_by(name: params[:id], user_id: params[:user_id])
     @key.destroy
+
+    $customerio.delay.track(@current_user, "key_destroyed")
 
     logger.warn "#{Time.new.utc} key=#{@key._id} removed by user=#{@current_user._id}"
 

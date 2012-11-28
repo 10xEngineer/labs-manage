@@ -1,4 +1,6 @@
 ManageApp::Application.routes.draw do
+  resources :password_resets
+
   namespace :admin do
     get "/" => "home#index"
   end

@@ -9,6 +9,8 @@ gem "simple_form"
 gem "rufus-mnemo"
 gem "sshkey"
 gem "postmark-rails"
+gem "customerio"
+gem 'delayed_job_mongoid'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
