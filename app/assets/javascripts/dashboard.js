@@ -38,7 +38,7 @@ angular.module('labs', ['customResource']).
       create: { method:'POST' },
     });
     return Lab;
-  }]).directive('machineInfo', function($compile) {
+  }]).directive('machineInfo', ['$compile', function($compile) {
     return function(scope, element, attrs) {
 
       attrs.$observe('machineInfo', function(value) {
@@ -100,14 +100,14 @@ angular.module('labs', ['customResource']).
         }, true);
       });
     };
-});
+}]);
 
 
 /* Controllers */
 
 function LabsController($scope, Lab) {
-  $scope.token = TOKEN;
-  $scope.secret = SECRET;
+  $scope.token = $('#token').val() || TOKEN;
+  $scope.secret = $('#secret').val() || SECRET;
   test = $scope.labInfo = {};
 
   var loadingComplete = function() {
@@ -177,5 +177,5 @@ function LabsController($scope, Lab) {
   $scope.refresh();
 }
 
-//LabsController.$inject = ['$scope', 'Lab'];
+LabsController.$inject = ['$scope', 'Lab'];
 
