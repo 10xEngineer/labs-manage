@@ -17,6 +17,8 @@ ManageApp::Application.routes.draw do
     end
 
     resources :keys, :only => [:index, :create, :destroy]
+
+    resources :dashboard, :only => [:index]
   end
 
   get "login"   => "sessions#new",      :as => :login

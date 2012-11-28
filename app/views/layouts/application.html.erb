@@ -53,8 +53,9 @@
 
 <div id="sidebar">
       <ul>
-        <li <%= is_active?("users") %>><a href="<%= user_path(@current_user) %>"><i class="icon icon-home"></i> <span>Overview</span></a></li>
-        <li <%= is_active?("help") %>><a href="<%= user_help_index_path(@current_user) %>"><i class="icon icon-home"></i> <span>Getting Started</span></a></li>
+        <li <%= is_active?("users") %>><a href="<%= user_path(@current_user) %>"><i class="icon icon-user"></i> <span>Overview</span></a></li>
+        <li <%= is_active?("dashboard") %>><a href="<%= user_dashboard_index_path(@current_user) %>"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
+        <li <%= is_active?("help") %>><a href="<%= user_help_index_path(@current_user) %>"><i class="icon icon-info-sign"></i> <span>Getting Started</span></a></li>
         <li <%= is_active?("access_tokens") %>><a href="<%= user_access_tokens_path(current_user) %>"><i class="icon icon-upload"></i> <span>API Keys</span></a></li>
         <li <%= is_active?("keys") %>><a href="<%= user_keys_path(current_user) %>"><i class="icon icon-book"></i> <span>SSH Keys</span></a></li>
         <% if @current_user.is_admin? %>
@@ -86,6 +87,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <%= yield :optional_scripts %>
 
 <script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.5/zenbox.js"></script>
 <style type="text/css" media="screen, projection">

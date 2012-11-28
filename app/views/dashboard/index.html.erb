@@ -1,0 +1,63 @@
+<% content_for :content_header do %>
+<h1>Dashboard</h1>
+<% end %>
+
+<% content_for :optional_scripts do %>
+	<%= javascript_include_tag "bootstrapx-clickover" %>
+	<%= javascript_include_tag "angular.min" %>
+	<%= javascript_include_tag "custom-resource" %>
+	<%= javascript_include_tag "hmac-sha256" %>
+	<%= javascript_include_tag "enc-base64-min" %>
+	<%= javascript_include_tag "dashboard" %>
+<% end %>
+
+<div id="dashboard"  ng-app="labs" ng-controller="LabsController">
+	<!-- Waiting Modal -->
+	<div id="machineInfo" ng-show="alertMessage" ng-class="alertClass" class="alert hide" tabindex="-1" role="dialog" data-backdrop="true">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<div id="flash_notice">{{alertMessage}}</div>
+	</div>
+	<a class="btn" href="#" ng-click="createMachine()">Create</a>
+	<a class="btn" href="#" ng-click="refresh()">Refresh</a>
+	<div class="row-fluid">
+		<div class="span12">
+			<input id="token" type="hidden" value="<%= @tokens[0].auth_token %>" ng-model="token">
+			<input id="secret" type="hidden" value="<%= @tokens[0].auth_secret %>" ng-model="secret">
+			<table class="table table-bordered table-striped machineList">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>State</th>
+						<th>Info</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="lab in labs">
+						<td>{{lab.name}}</td>
+						<td>{{lab.state}}</td>
+						<td class="center"><a href="#" class="machineInfo" machine-info="{{lab.name}}">info</a></td>
+						<td class="center"><a href="#" data-toggle="modal" data-target="#confirm" ng-click="setLabForDeletion(lab.name)" ng-hide="lab.state=='destroyed'">Delete</a></td>
+					</tr>
+					<tr ng-show="isLoading">
+						<td colspan="4">Loading...</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- Confirmation Modal -->
+	<div id="confirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="title">Confirm Deletion</h3>
+		</div>
+		<div class="modal-body">
+			<p>Are you sure you want to destroy the lab <strong>{{labDelete}}</strong>?</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" ng-click="deleteMachine(labDelete)">Yes</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+		</div>
+	</div>
+</div>
