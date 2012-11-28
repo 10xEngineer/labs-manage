@@ -3,12 +3,7 @@
 <% end %>
 
 <% content_for :optional_scripts do %>
-	<%= javascript_include_tag "bootstrapx-clickover" %>
-	<%= javascript_include_tag "angular.min" %>
-	<%= javascript_include_tag "custom-resource" %>
-	<%= javascript_include_tag "hmac-sha256" %>
-	<%= javascript_include_tag "enc-base64-min" %>
-	<%= javascript_include_tag "dashboard" %>
+	<%= javascript_include_tag "ui_client" %>
 <% end %>
 
 <div id="dashboard"  ng-app="labs" ng-controller="LabsController">
