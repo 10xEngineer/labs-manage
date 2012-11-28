@@ -1,6 +1,6 @@
-var ENDPOINT = 'http://api.eu-1-aws.10xlabs.net/v1';
 var TOKEN = '';
 var SECRET = '';
+var ENDPOINT = 'https://api.eu-1-aws.10xlabs.net/v1';
 /* Modules */
 
 var calculateHash = function(token, secret, method, url, date, data) {
