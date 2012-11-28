@@ -30,7 +30,7 @@ var attachPopover = function() {
 
 
 angular.module('labs', ['customResource']).
-  factory('Lab', function($customResource) {
+  factory('Lab', ['$customResource' , function($customResource) {
     var Lab = $customResource(ENDPOINT + '/machines/:machineId', { machineId: '@name'}, {
       query: { method:'GET', isArray:true },
       get: { method:'GET' },
@@ -38,7 +38,7 @@ angular.module('labs', ['customResource']).
       create: { method:'POST' },
     });
     return Lab;
-  }).directive('machineInfo', function($compile) {
+  }]).directive('machineInfo', function($compile) {
     return function(scope, element, attrs) {
 
       attrs.$observe('machineInfo', function(value) {
