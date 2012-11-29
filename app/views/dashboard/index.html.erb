@@ -28,7 +28,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="lab in labs">
+					<tr ng-show="lab.name" style="display: none;" ng-repeat="lab in labs">
 						<td>{{lab.name}}</td>
 						<td>{{lab.state}}</td>
 						<td class="center"><a href="#" class="machineInfo" machine-info="{{lab.name}}">info</a></td>
