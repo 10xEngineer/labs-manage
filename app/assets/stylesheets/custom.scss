@@ -88,13 +88,17 @@ div#zenbox_tab {
 }
 
 .center {
-  text-align: center;
+	text-align: center;
 }
 
 #dashboard > .btn {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .popover {
-  width: auto;
+	width: auto;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	background-image: url('/assets/glyphicons-halflings.png');
 }

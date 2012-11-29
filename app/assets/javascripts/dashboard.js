@@ -31,13 +31,18 @@ var attachPopover = function() {
 
 angular.module('labs', ['customResource']).
   factory('Lab', ['$customResource' , function($customResource) {
-    var Lab = $customResource(ENDPOINT + '/machines/:machineId', { machineId: '@name'}, {
+    var Lab = $customResource(ENDPOINT + '/machines/:machineId', {}, {
       query: { method:'GET', isArray:true },
       get: { method:'GET' },
       remove: { method:'DELETE' },
       create: { method:'POST' },
     });
     return Lab;
+  }]).factory('Template', ['$customResource' , function($customResource) {
+    var Template = $customResource(ENDPOINT + '/templates', {}, {
+      query: { method:'GET', isArray:true }
+    });
+    return Template;
   }]).directive('machineInfo', ['$compile', function($compile) {
     return function(scope, element, attrs) {
 
@@ -100,12 +105,18 @@ angular.module('labs', ['customResource']).
         }, true);
       });
     };
+  }]).directive('createMachine', ['$compile', function($compile) {
+    return function(scope, element, attrs) {
+      element.bind('click', function(e) {
+        $('form#createForm').get(0).reset();
+      });
+    };
 }]);
 
 
 /* Controllers */
 
-function LabsController($scope, Lab) {
+function LabsController($scope, Lab, Template) {
   $scope.token = $('#token').val() || TOKEN;
   $scope.secret = $('#secret').val() || SECRET;
   test = $scope.labInfo = {};
@@ -121,6 +132,14 @@ function LabsController($scope, Lab) {
     $scope.alertMessage = message || "An unknown error occurrd";
   };
 
+  // Templates
+  $scope.loadTemplates = function() {
+    var date = new Date().toUTCString();
+    
+    $scope.templates = Template.query({}, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'GET', '/templates', date) }, loadingComplete, error);
+  };
+
+  // Machines
   $scope.refresh = function() {
     $scope.alertClass = 'alert-info show';
     $scope.alertMessage = 'Loading your lab machines...'
@@ -162,7 +181,18 @@ function LabsController($scope, Lab) {
     $scope.alertMessage = 'Processing...'
 
     var date = new Date().toUTCString();
-    var data = { "template": "ubuntu-precise64", "key": "default", "size": "512", "pool": "default" };
+    var form = $('form#createForm').get(0);
+    var name = form.name.value;
+    var template = form.template.value;
+    var data = { "key": "default", "size": "512", "pool": "default" };
+
+    if(name) {
+      data.name = name;
+    }
+    if(template) {
+      data.template = template;
+    }
+
     Lab.create({}, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'POST', '/machines', date, data) }, data, function() {
       console.log('Success.');
       $scope.refresh();
@@ -175,7 +205,8 @@ function LabsController($scope, Lab) {
   };
 
   $scope.refresh();
+  $scope.loadTemplates();
 }
 
-LabsController.$inject = ['$scope', 'Lab'];
+LabsController.$inject = ['$scope', 'Lab', 'Template'];
 

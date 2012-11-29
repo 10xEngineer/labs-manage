@@ -12,8 +12,8 @@
 		<button type="button" class="close" data-dismiss="alert">×</button>
 		<div id="flash_notice">{{alertMessage}}</div>
 	</div>
-	<a class="btn" href="#" ng-click="createMachine()">Create</a>
-	<a class="btn" href="#" ng-click="refresh()">Refresh</a>
+	<a class="btn" href="#" data-toggle="modal" create-machine data-target="#createMachine"><i class="icon-plus"></i> Create</a>
+	<a class="btn" href="#" ng-click="refresh()"><i class="icon-refresh"></i> Refresh</a>
 	<div class="row-fluid">
 		<div class="span12">
 			<input id="token" type="hidden" value="<%= @tokens[0].auth_token %>" ng-model="token">
@@ -53,6 +53,28 @@
 		<div class="modal-footer">
 			<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" ng-click="deleteMachine(labDelete)">Yes</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+		</div>
+	</div>
+	<!-- Create Machine Modal -->
+	<div id="createMachine" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="title">Create a new Lab Machine</h3>
+		</div>
+		<div class="modal-body">
+			<form id="createForm" class="form-horizontal">
+				<label>Name:</label>
+				<input type="textbox" name="name" placeholder="auto">
+				<span class="help-block">Optional. Leave it blank to auto-generate.</span>
+				<label>Template:</label>
+				<select name="template">
+					<option ng-repeat="template in templates" value="{{template.name}}">{{template.name}}</option>
+				</select>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="createMachine()">Create</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 		</div>
 	</div>
 </div>
