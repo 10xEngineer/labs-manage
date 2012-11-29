@@ -6,6 +6,7 @@ demo/av1.jpg: demo/av1-ca2b7d36dfccd9675d10910e110b7f91.jpg
 demo/av2.jpg: demo/av2-6ace29ec713da5675b73afb0b60556f4.jpg
 demo/av3.jpg: demo/av3-863498cd3daf67712cd085f8d1f54720.jpg
 demo/envelope.png: demo/envelope-b360deee91bc16102f60cb97de76a13b.png
+favicon.ico: favicon-475f39bf06cd1dce58897010f229f9f4.ico
 glyphicons-halflings-white.png: glyphicons-halflings-white-13553a5bf21ae3cc374006592488ec64.png
 glyphicons-halflings.png: glyphicons-halflings-ab3144065a860d198f1d7d9a4882640c.png
 gritter-light.png: gritter-light-45f6a55bdd31060553ba47bab5abbf5c.png
@@ -62,11 +63,7 @@ menu-active.png: menu-active-19cc56a0699728cb1ecc2644b4d2050b.png
 rarrow.png: rarrow-1545f4366c58ad2debf0c5bdc8b2b673.png
 saturation.png: saturation-1a494b689fe439517852b2e34958d7f2.png
 sprite.png: sprite-3a888c2e07bb1804c7ad851b0de0dbc3.png
-application.js: application-aee758868e37a07ceb6d52d808977e7c.js
-application.css: application-06f71ccddda8e16f9a045a03c3a6870c.css
-fontawesome-webfont.eot: fontawesome-webfont-7cf1b0de49e2f8672c9ad6d9e382115f.eot
-fontawesome-webfont.svg: fontawesome-webfont-4d19fdd70a080778557b652cb4868557.svg
-fontawesome-webfont.ttf: fontawesome-webfont-1e29be0bb354c9f664cbca7df9a966d8.ttf
-fontawesome-webfont.woff: fontawesome-webfont-9c0e35b95bf9cea29c77678ebf71a29d.woff
-twitter/bootstrap/glyphicons-halflings-white.png: twitter/bootstrap/glyphicons-halflings-white-13553a5bf21ae3cc374006592488ec64.png
-twitter/bootstrap/glyphicons-halflings.png: twitter/bootstrap/glyphicons-halflings-ab3144065a860d198f1d7d9a4882640c.png
+application.js: application-c8f5055c392869064b7a6a05748f8f65.js
+ui_client.js: ui_client-07107f55d4c4040096b2c916d1687209.js
+application.css: application-0a0513e30e949d5591c9733efaf01990.css
+session.css: session-0b5fc7646e9cb4a1635b57dab59c9d80.css
