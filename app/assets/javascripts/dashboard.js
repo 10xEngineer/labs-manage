@@ -1,6 +1,7 @@
 var ENDPOINT = 'https://api.eu-1-aws.10xlabs.net/v1';
 var TOKEN = '';
 var SECRET = '';
+
 /* Modules */
 
 var calculateHash = function(token, secret, method, url, date, data) {
@@ -43,6 +44,15 @@ angular.module('labs', ['customResource']).
       query: { method:'GET', isArray:true }
     });
     return Template;
+  }]).factory('Snapshot', ['$customResource' , function($customResource) {
+    var Snapshot = $customResource(ENDPOINT + '/machines/:machineId/snapshots/:snapshotId/:persist', { machineId: '@name' }, {
+      query: { method:'GET', isArray:true },
+      remove: { method:'DELETE' },
+      create: { method:'POST' },
+      restore: { method: 'PUT' },
+      persist: { method: 'POST', params: { persist: 'persist' } }
+    });
+    return Snapshot;
   }]).directive('machineInfo', ['$compile', function($compile) {
     return function(scope, element, attrs) {
 
@@ -105,10 +115,17 @@ angular.module('labs', ['customResource']).
         }, true);
       });
     };
-  }]).directive('createMachine', ['$compile', function($compile) {
+  }]).directive('createMachine', function() {
     return function(scope, element, attrs) {
       element.bind('click', function(e) {
         $('form#createForm').get(0).reset();
+      });
+    };
+  }).directive('getSnapshot', ['$compile', function($compile) {
+    return function(scope, element, attrs) {
+      element.bind('click', function() {
+        scope.loadSnapshots(attrs.getSnapshot);
+        $('#snapshots').modal();
       });
     };
 }]);
@@ -116,10 +133,11 @@ angular.module('labs', ['customResource']).
 
 /* Controllers */
 
-function LabsController($scope, Lab, Template) {
+function LabsController($scope, Lab, Template, Snapshot) {
+  $scope.Math = window.Math;
   $scope.token = $('#token').val() || TOKEN;
   $scope.secret = $('#secret').val() || SECRET;
-  test = $scope.labInfo = {};
+  $scope.labInfo = {};
 
   var loadingComplete = function() {
     $scope.alertMessage = false;
@@ -204,9 +222,61 @@ function LabsController($scope, Lab, Template) {
     });
   };
 
+  // Snapshots
+  $scope.loadSnapshots = function(machine) {
+    $scope.snapshots = false;
+    $scope.alertClass = 'alert-info show';
+    $scope.alertMessage = 'Processing...'
+
+    var date = new Date().toUTCString();
+    $scope.snapshotInfo = { machine: machine };
+    $scope.snapshots = Snapshot.query({ machineId: machine }, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'GET', '/machines/' + machine + '/snapshots', date) }, loadingComplete, error);
+  }
+
+  $scope.createSnapshot = function(machine) {
+    $scope.alertClass = 'alert-info show';
+    $scope.alertMessage = 'Processing...'
+
+    var date = new Date().toUTCString();
+    $scope.snapshotInfo = { machine: machine };
+    var data = {};
+    Snapshot.create({ machineId: machine }, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'POST', '/machines/' + machine + '/snapshots', date, data) }, data, function() {
+
+      $scope.loadSnapshots(machine);
+      loadingComplete();
+    }, error);
+
+  }
+
+  $scope.restoreSnapshot = function(machine, snapshot) {
+    $scope.alertClass = 'alert-info show';
+    $scope.alertMessage = 'Processing...'
+
+    var date = new Date().toUTCString();
+    $scope.snapshotInfo = { machine: machine };
+    var data = { name: snapshot };
+    Snapshot.restore({ machineId: machine }, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'PUT', '/machines/' + machine + '/snapshots', date, data) }, data, function() {
+      $('#snapshots').modal('hide');
+      loadingComplete();
+      $scope.alertMessage = 'Successfully restored snapshot ' + snapshot + '.';
+    }, error);
+  }
+
+  $scope.deleteSnapshot = function(machine, snapshot) {
+    $scope.alertClass = 'alert-info show';
+    $scope.alertMessage = 'Processing...'
+
+    var date = new Date().toUTCString();
+    $scope.snapshotInfo = { machine: machine };
+    Snapshot.remove({ machineId: machine, snapshotId: snapshot }, { 'X-Labs-Date': date, 'X-Labs-Token': $scope.token, 'X-Labs-Signature': calculateHash($scope.token, $scope.secret, 'DELETE', '/machines/' + machine + '/snapshots/' + snapshot, date) }, function() {
+      $scope.loadSnapshots(machine);
+      loadingComplete();
+    }, error);
+  }
+
   $scope.refresh();
   $scope.loadTemplates();
 }
 
-LabsController.$inject = ['$scope', 'Lab', 'Template'];
+LabsController.$inject = ['$scope', 'Lab', 'Template', 'Snapshot'];
 

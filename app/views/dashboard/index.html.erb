@@ -24,6 +24,7 @@
 						<th>Name</th>
 						<th>State</th>
 						<th>Info</th>
+						<th>Snapshots</th>
 						<th>Delete</th>
 					</tr>
 				</thead>
@@ -32,6 +33,7 @@
 						<td>{{lab.name}}</td>
 						<td>{{lab.state}}</td>
 						<td class="center"><a href="#" class="machineInfo" machine-info="{{lab.name}}">info</a></td>
+						<td class="center"><a href="#" class="snapshot" get-snapshot="{{lab.name}}" ng-hide="lab.state=='destroyed'">view</a></td>
 						<td class="center"><a href="#" data-toggle="modal" data-target="#confirm" ng-click="setLabForDeletion(lab.name)" ng-hide="lab.state=='destroyed'">Delete</a></td>
 					</tr>
 					<tr ng-show="isLoading">
@@ -75,6 +77,46 @@
 		<div class="modal-footer">
 			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="createMachine()">Create</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		</div>
+	</div>
+
+	<!-- Snapshots Modal -->
+	<div id="snapshots" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="title">Snapshots for {{snapshotInfo.machine}}</h3>
+		</div>
+		<div class="modal-body">
+			<button class="btn" ng-click="createSnapshot(snapshotInfo.machine)"><i class="icon-plus"></i> Create</button>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Size</th>
+						<th>Created</th>
+						<th>Restore</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="snapshot in snapshots">
+						<td>{{snapshot.name}}</td>
+						<td>{{Math.round(snapshot.used_size/1048576)}} MB</td>
+						<td>{{snapshot.created_at}}</td>
+						<td><a href="#" ng-click="restoreSnapshot(snapshotInfo.machine, snapshot.name)">Restore</a></td>
+						<td><a href="#" ng-click="deleteSnapshot(snapshotInfo.machine, snapshot.name)">Delete</a></td>
+					</tr>
+					<tr ng-show="!snapshots">
+						<td colspan="5">Loading...</td>
+					</tr>
+					<tr ng-show="snapshots && snapshots.length == 0">
+						<td colspan="5">No Snapshots</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		</div>
 	</div>
 </div>
