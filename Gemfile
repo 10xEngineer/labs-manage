@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.17'
 
 gem "mongoid", "~> 3.0.10"
 #gem "twitter-bootstrap-rails"
